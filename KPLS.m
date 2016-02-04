@@ -1,7 +1,7 @@
 function [trnYhat,tstYhat,Coef,Res]=KPLS(trnK,tstK,trny,k)
-% this function performs kernel partial least squerres regression 
+% this function performs kernel partial least squeres regression 
 %
-% [trnYhat,tstYhat,Coef,Res]=KPLS(trnK,tstK,trny,k,option)
+% [trnYhat,tstYhat,Coef,Res]=KPLS(trnK,tstK,trny,k)
 %
 % trnK:input kernel for training
 % tstK:input kernel for test
