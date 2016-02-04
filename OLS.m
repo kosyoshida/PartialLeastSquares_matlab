@@ -1,9 +1,15 @@
 function B=OLS(X,Y)
-% this function perform ordinary least squerre 
+% this function performs ordinary least squerre regression 
 %
 % B=OLS(X,Y)
 %
 % X:predictor
 % Y:responce
 
-B=(X'*X)\(X'*Y);
+% size
+p=size(X,2);
+
+% regularization
+lmbd=0.01;
+
+B=(X'*X+lmbd*eye(p))\(X'*Y);

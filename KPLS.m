@@ -1,5 +1,5 @@
-function [trnYhat,tstYhat,Coef,Res]=KPLS(trnK,tstK,trny,k,option)
-% this function perform kernel partial least squerres 
+function [trnYhat,tstYhat,Coef,Res]=KPLS(trnK,tstK,trny,k)
+% this function performs kernel partial least squerres regression 
 %
 % [trnYhat,tstYhat,Coef,Res]=KPLS(trnK,tstK,trny,k,option)
 %
@@ -7,13 +7,9 @@ function [trnYhat,tstYhat,Coef,Res]=KPLS(trnK,tstK,trny,k,option)
 % tstK:input kernel for test
 % trny:responce for training
 % k:the number of components
-% option:setting enviroment
 
 if ~exist('k','var')
     k=1;
-end
-if ~exist('option.disp','var')
-    option.disp='off';
 end
 
 % size
