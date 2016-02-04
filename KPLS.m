@@ -6,7 +6,12 @@ function [trnYhat,tstYhat,Coef,Res]=KPLS(trnK,tstK,trny,k)
 % trnK:input kernel for training
 % tstK:input kernel for test
 % trny:responce for training
-% k:the number of components
+% k:the number of components (default setting is 1)
+%
+% trnYhat:prediction for trainig
+% tstYhat:prediction for test
+% Coef   :results of KPLS
+% Res    :residuals
 
 if ~exist('k','var')
     k=1;
@@ -36,11 +41,6 @@ new_t=dK*u/norm(dK*u,2);
 c=dY'*new_t;
 new_u=dY*c/norm(dY*c,2);
 
-% display
-if strcmp(option.disp,'on')
-fprintf('This is %d-th iteration\n',j);
-end
-
 % tolerance
 if norm(new_u-u,2)<tol && norm(new_t-t)<tol
     u=new_u;
@@ -69,6 +69,9 @@ Coef.C=C;
 Res.X=dK;
 Res.Y=dY;
 
+% trnYhat:prediction for trainig
 trnYhat=trnK*U*((T'*trnK*U)\T'*trny);
+
+% trnYhat:prediction for test
 tstYhat=tstK*U*((T'*trnK*U)\T'*trny);
     
