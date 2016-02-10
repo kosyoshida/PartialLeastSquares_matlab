@@ -5,20 +5,22 @@ function K=mkDeltKernel(y)
 % definition
 % K(y,y')=1/n if y=y'
 %        =0   if y~=y'
-flag=ismember(y,[1,0]);
-if all(flag)
-   y(y==0)=-1;
+n=length(y);
+
+yapp=unique(y);
+if length(yapp)~=2
+    error('y should be binary !')
 end
 
-np=sum(y==1);
-nn=sum(y==-1);
+np=sum(y==yapp(1));
+nn=sum(y==yapp(2));
 
-yp=y;
-yp(y==-1)=0;
+yp=zeros(n,1);
+yp(y==yapp(1))=1;
 Kp=yp*yp'./np;
 
-yn=y;
-yn(y==1)=0;
+yn=zeros(n,1);
+yn(y==yapp(2))=1;
 Kn=yn*yn'./nn;
 
 K=Kp+Kn;
